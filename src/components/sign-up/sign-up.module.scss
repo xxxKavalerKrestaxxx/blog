@@ -1,0 +1,125 @@
+.wrapper {
+  width: 400px;
+  height: 580px;
+  margin: 0 auto;
+  background-color: white;
+  margin-top: 40px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  box-shadow: 0px 22px 106px rgba(0, 0, 0, 0.07), 0px 9.19107px 44.2843px rgba(0, 0, 0, 0.0503198),
+    0px 4.91399px 23.6765px rgba(0, 0, 0, 0.0417275), 0px 2.75474px 13.2728px rgba(0, 0, 0, 0.035),
+    0px 1.46302px 7.04911px rgba(0, 0, 0, 0.0282725), 0px 0.608796px 2.93329px rgba(0, 0, 0, 0.0196802);
+  padding: 15px 32px;
+  animation: appearing 0.3s ease-in-out;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  text-align: center;
+  font-weight: 500;
+  font-size: 25px;
+  margin: 0;
+  margin-bottom: 15px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 22px;
+  margin-top: 2px;
+  font-weight: 500;
+  input {
+    width: 320px;
+    height: 40px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding-left: 12px;
+    margin-bottom: 2px;
+
+    &::placeholder {
+      color: #bfbfbf;
+    }
+  }
+}
+
+.agreement {
+  font-size: 14px;
+  line-height: 22px;
+  color: #595959;
+  cursor: pointer;
+  position: relative;
+  margin-left: 30px;
+  input {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    left: -30px;
+    // outline: 3px solid #c00;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+.submit_btn {
+  width: 319px;
+  height: 40px;
+  background: #1890ff;
+  border-radius: 4px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  margin-top: 13px;
+  cursor: pointer;
+
+  &:disabled {
+    background: grey;
+  }
+  &:hover {
+    font-size: 18px;
+    -webkit-box-shadow: 0px 0px 9px 1px #1890ff;
+    box-shadow: 0px 0px 9px 1px #1890ff;
+  }
+}
+
+.divider {
+  width: 320px;
+  height: 0px;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 8px;
+  margin-top: 9px;
+}
+
+.sign_in {
+  text-align: center;
+  color: #8c8c8c;
+  font-size: 12px;
+  margin-top: 8px;
+  a {
+    color: #1890ff;
+  }
+}
+
+.error {
+  height: 20px;
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #f5222d;
+  }
+}
+
+@keyframes appearing {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

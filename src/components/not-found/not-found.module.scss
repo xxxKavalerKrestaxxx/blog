@@ -1,0 +1,25 @@
+.message {
+  margin: 0 auto;
+  width: 700px;
+  margin-top: 50px;
+  font-size: 30px;
+  p {
+    text-align: center;
+  }
+}
+
+.btn__back {
+  margin: 0 auto;
+  height: 50px;
+  width: 150px;
+  display: block;
+  background: white;
+  color: black;
+  font-size: 18px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  &:hover {
+    background: lightgrey;
+  }
+}
