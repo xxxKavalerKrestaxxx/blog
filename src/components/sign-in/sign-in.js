@@ -4,18 +4,21 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { message } from 'antd'
 
-import useBlogAPI from '../../custom-hooks/use-blog-api'
+import { postLogin } from '../../blog-api/blog-api'
+import { articlesPATH, signUpPATH } from '../../pathes/pathes'
 import { setUserError } from '../../redux/action'
 
 import classes from './sing-in.module.scss'
 
 const SignIn = () => {
-  const { fetcher } = useBlogAPI()
   const dispatch = useDispatch()
-
+  const user = useSelector((state) => state.user.user)
   const navigate = useNavigate()
   const error = useSelector((state) => state.user.error)
 
+  useEffect(() => {
+    if (user.username) navigate(articlesPATH)
+  }, [])
   const {
     register,
     formState: { errors },
@@ -29,7 +32,7 @@ const SignIn = () => {
       email,
       password,
     }
-    await dispatch(fetcher.postLogin(authData))
+    await dispatch(postLogin(authData))
   })
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const SignIn = () => {
     if (error === 'none') {
       message.success('good')
       dispatch(setUserError())
-      navigate('/articles')
+      navigate(articlesPATH)
     }
   }, [error, setError])
 
@@ -91,7 +94,7 @@ const SignIn = () => {
       </form>
       <div className={classes.sign_in}>
         <span style={{ marginRight: '3px' }}>Dont have an account?</span>
-        <Link to="/sign-up">Sign up.</Link>
+        <Link to={signUpPATH}>Sign up.</Link>
       </div>
     </div>
   )

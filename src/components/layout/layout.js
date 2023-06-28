@@ -3,6 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { setUser } from '../../redux/action'
+import { articlesPATH, newArticlePATH, profilePATH, signInPATH, signUpPATH } from '../../pathes/pathes'
 
 import classes from './layout.module.scss'
 
@@ -17,18 +18,18 @@ const Layout = () => {
     return (
       <>
         <header className={classes.header}>
-          <Link to="/articles">
+          <Link to={articlesPATH}>
             <button className={classes.blog_link}>Blog</button>
           </Link>
           <div className={classes.wrapper}>
-            <Link to="/new-article">
+            <Link to={newArticlePATH}>
               <button className={classes.create_article}>Create article</button>
             </Link>
             <div className={classes.username}>
-              <Link to="/profile">{user?.username}</Link>
+              <Link to={profilePATH}>{user?.username}</Link>
             </div>
             <div className={classes.userimage}>
-              <Link to="/profile">
+              <Link to={profilePATH}>
                 <img
                   src={user?.image || '42'}
                   onError={(e) => (e.currentTarget.src = 'https://cdn-icons-png.flaticon.com/512/147/147140.png')}
@@ -36,7 +37,7 @@ const Layout = () => {
               </Link>
             </div>
 
-            <Link to="/articles">
+            <Link to={articlesPATH}>
               <button className={classes.log_out} onClick={buttonLog}>
                 Log out
               </button>
@@ -52,14 +53,14 @@ const Layout = () => {
     return (
       <>
         <header className={classes.header}>
-          <Link to="/articles">
+          <Link to={articlesPATH}>
             <button className={classes.blog_link}>Blog</button>
           </Link>
           <div className={classes.wrapper}>
-            <Link to="/sign-in">
+            <Link to={signInPATH}>
               <button className={classes.sign_in}>Sign in</button>
             </Link>
-            <Link to="/sign-up">
+            <Link to={signUpPATH}>
               <button className={classes.sign_up}>Sign up</button>
             </Link>
           </div>

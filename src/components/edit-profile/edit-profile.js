@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { message } from 'antd'
 
 import { setUserError } from '../../redux/action'
-import useBlogAPI from '../../custom-hooks/use-blog-api'
+import { updateProfile } from '../../blog-api/blog-api'
+import { articlesPATH } from '../../pathes/pathes'
 
 import classes from './edit-profile.module.scss'
 
 const EditProfile = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { fetcher } = useBlogAPI()
   const user = useSelector((state) => state.user.user)
-
   const error = useSelector((state) => state.user.error)
 
   const {
@@ -43,15 +42,17 @@ const EditProfile = () => {
     if (error === 'none') {
       message.success('good')
       dispatch(setUserError())
-      navigate('/articles')
+      navigate(articlesPATH)
     }
   }, [error])
+
+  if (!user.username) navigate(articlesPATH)
 
   const onSubmit = handleSubmit((data) => {
     console.log(data)
     const changedData = Object.fromEntries(Object.entries(data).filter(([value]) => value !== '' && value !== null))
 
-    dispatch(fetcher.updateProfile(changedData))
+    dispatch(updateProfile(changedData))
   })
 
   const url =

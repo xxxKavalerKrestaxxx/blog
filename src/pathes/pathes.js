@@ -1,0 +1,7 @@
+export const articlesPATH = '/articles'
+export const articlesSlugPATH = '/articles/:slug'
+export const signInPATH = '/sign-in'
+export const signUpPATH = '/sign-up'
+export const profilePATH = '/profile'
+export const newArticlePATH = '/new-article'
+export const editArticlePATH = '/articles/:slug/edit'

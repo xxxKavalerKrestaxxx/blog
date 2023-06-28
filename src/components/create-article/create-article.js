@@ -2,16 +2,17 @@ import React from 'react'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { message } from 'antd'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import useBlogAPI from '../../custom-hooks/use-blog-api'
+import { createArticle } from '../../blog-api/blog-api'
+import { articlesPATH } from '../../pathes/pathes'
 
 import classes from './create-erticle.module.scss'
 
 const CreateArticle = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { fetcher } = useBlogAPI()
+  const user = useSelector((state) => state.user.user)
   const {
     register,
     formState: { errors },
@@ -46,13 +47,13 @@ const CreateArticle = () => {
       tagList: tagArr,
     }
 
-    dispatch(fetcher.createArticle(authData))
-    navigate('/articles')
+    dispatch(createArticle(authData))
+    navigate(articlesPATH)
     message.success('good')
   })
 
-  if (!localStorage.getItem('token')) {
-    return <Navigate to="/sign-in" />
+  if (!user.username) {
+    return <Navigate to={articlesPATH} />
   } else {
     return (
       <div className={classes.wrapper}>

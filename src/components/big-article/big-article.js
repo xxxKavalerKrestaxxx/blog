@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 import { Popconfirm, message } from 'antd'
 
-import useBlogAPI from '../../custom-hooks/use-blog-api'
 import Spinner from '../spinner/spinner'
+import { getOnePage, addLike, deleteLike, deleteArticle } from '../../blog-api/blog-api'
+import { articlesPATH } from '../../pathes/pathes'
 
 import classes from './big-article.module.scss'
 import './big-article.css'
@@ -20,11 +21,10 @@ const BigArticle = () => {
   const [loadingImg, setLoadingImg] = useState(true)
   const [likeCounter, setLikeCounter] = useState(0)
   const [loading, setLoading] = useState(true)
-  const { fetcher } = useBlogAPI()
   const user = useSelector((state) => state.user.user)
   useEffect(() => {
     const fetchFunc = async () => {
-      await dispatch(fetcher.getOnePage(slug))
+      await dispatch(getOnePage(slug))
       setLoading(false)
     }
     fetchFunc()
@@ -35,11 +35,11 @@ const BigArticle = () => {
 
     if (!checked) {
       setLikeCounter((cur) => cur + 1)
-      dispatch(fetcher.addLike(slug))
+      dispatch(addLike(slug))
     }
     if (checked) {
       setLikeCounter((cur) => cur - 1)
-      dispatch(fetcher.deleteLike(slug))
+      dispatch(deleteLike(slug))
     }
   }
 
@@ -50,9 +50,9 @@ const BigArticle = () => {
     }
   }
   const onDeleted = () => {
-    dispatch(fetcher.deleteArticle(slug))
+    dispatch(deleteArticle(slug))
     message.success('deleted')
-    navigate('/articles')
+    navigate(articlesPATH)
   }
 
   useEffect(() => {

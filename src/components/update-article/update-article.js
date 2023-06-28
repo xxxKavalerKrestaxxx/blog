@@ -5,7 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { message } from 'antd'
 
 import Spinner from '../spinner/spinner'
-import useBlogAPI from '../../custom-hooks/use-blog-api'
+import { getOnePage, updateArticle } from '../../blog-api/blog-api'
+import { articlesPATH } from '../../pathes/pathes'
 
 import classes from './update-article.module.scss'
 
@@ -19,10 +20,9 @@ const UpdateArticle = () => {
   const tagsForUpdate = tags?.map((tag) => {
     return { tag: tag }
   })
-  const { fetcher } = useBlogAPI()
   useEffect(() => {
     const fetchFunc = async () => {
-      await dispatch(fetcher.getOnePage(slug))
+      await dispatch(getOnePage(slug))
       setLoaded(false)
       if (currentArticle) {
         setValue('title', currentArticle.title)
@@ -70,8 +70,8 @@ const UpdateArticle = () => {
       },
     }
 
-    if (slug) dispatch(fetcher.updateArticle(authData, slug))
-    navigate('/articles')
+    if (slug) dispatch(updateArticle(authData, slug))
+    navigate(articlesPATH)
     message.success('Article updated!')
   })
 

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 
-import useBlogAPI from '../../custom-hooks/use-blog-api'
+import { addLike, deleteLike } from '../../blog-api/blog-api'
+import { articlesPATH } from '../../pathes/pathes'
 
 import classes from './small-article.module.scss'
 
@@ -12,7 +13,6 @@ const SmallArticle = ({ article }) => {
   const [checked, setChecked] = useState(article.favorited)
   const [likeCounter, setLikeCounter] = useState(0)
   const [loadingImg, setLoadingImg] = useState(true)
-  const { fetcher } = useBlogAPI()
   const dispatch = useDispatch()
 
   function setDate(date) {
@@ -26,11 +26,11 @@ const SmallArticle = ({ article }) => {
     setChecked((prevChecked) => !prevChecked)
     if (!checked) {
       setLikeCounter((cur) => cur + 1)
-      dispatch(fetcher.addLike(article.slug))
+      dispatch(addLike(article.slug))
     }
     if (checked) {
       setLikeCounter((cur) => cur - 1)
-      dispatch(fetcher.deleteLike(article.slug))
+      dispatch(deleteLike(article.slug))
     }
   }
 
@@ -45,7 +45,7 @@ const SmallArticle = ({ article }) => {
       <div className={classes.wrapper}>
         <div className={classes.title}>
           <p className={classes.title__text}>
-            <Link to={`/articles/${article.slug}`}>{article.title}</Link>
+            <Link to={articlesPATH + '/' + article.slug}>{article.title}</Link>
           </p>
           <label>
             <input
