@@ -15,6 +15,7 @@ const EditProfile = () => {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user.user)
   const error = useSelector((state) => state.user.error)
+  const img = 'https://avatars.mds.yandex.net/i?id=9f9e6b333ada12f3f2cac1a6dd8f41548a9fe3b0-9067891-images-thumbs&n=13'
 
   const {
     register,
@@ -55,9 +56,7 @@ const EditProfile = () => {
     dispatch(updateProfile(changedData))
   })
 
-  const url =
-    watch('image') ||
-    'https://avatars.mds.yandex.net/i?id=9f9e6b333ada12f3f2cac1a6dd8f41548a9fe3b0-9067891-images-thumbs&n=13'
+  const url = watch('image') || img
 
   return (
     <div className={classes.wrapper}>

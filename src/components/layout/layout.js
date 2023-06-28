@@ -8,6 +8,7 @@ import { articlesPATH, newArticlePATH, profilePATH, signInPATH, signUpPATH } fro
 import classes from './layout.module.scss'
 
 const Layout = () => {
+  const errorIc = 'https://cdn-icons-png.flaticon.com/512/147/147140.png'
   const dispatch = useDispatch()
   const buttonLog = () => {
     localStorage.removeItem('token')
@@ -30,10 +31,7 @@ const Layout = () => {
             </div>
             <div className={classes.userimage}>
               <Link to={profilePATH}>
-                <img
-                  src={user?.image || '42'}
-                  onError={(e) => (e.currentTarget.src = 'https://cdn-icons-png.flaticon.com/512/147/147140.png')}
-                ></img>
+                <img src={user?.image || '42'} onError={(e) => (e.currentTarget.src = errorIc)}></img>
               </Link>
             </div>
 

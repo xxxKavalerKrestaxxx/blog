@@ -13,6 +13,9 @@ import classes from './big-article.module.scss'
 import './big-article.css'
 
 const BigArticle = () => {
+  const urlImgLoad =
+    'https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999'
+  const imgUrl = 'https://cdn-icons-png.flaticon.com/512/147/147140.png'
   const { slug } = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -127,14 +130,10 @@ const BigArticle = () => {
               </div>
               <img
                 className={classes.user__avatar}
-                src={
-                  loadingImg
-                    ? 'https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999'
-                    : oneArticle?.author?.image
-                }
+                src={loadingImg ? urlImgLoad : oneArticle?.author?.image}
                 alt="user_avatar"
                 onLoad={() => setLoadingImg(false)}
-                onError={(e) => (e.currentTarget.src = 'https://cdn-icons-png.flaticon.com/512/147/147140.png')}
+                onError={(e) => (e.currentTarget.src = imgUrl)}
               />
             </div>
             <div className={classes.user__buttons}>{buttons}</div>
