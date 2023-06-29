@@ -4,14 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import moment from 'moment'
 
 import { addLike, deleteLike } from '../../blog-api/blog-api'
-import { articlesPATH } from '../../pathes/pathes'
+import { articlesPATH, gifLoadedPATH, errorImgPATH } from '../../pathes/pathes'
 
 import classes from './small-article.module.scss'
 
 const SmallArticle = ({ article }) => {
-  const loadImg =
-    'https://powerusers.microsoft.com/t5/image/serverpage/image-id/118082i204C32E01666789C/image-size/large/is-moderation-mode/true?v=v2&px=999'
-  const errorImg = 'https://cdn-icons-png.flaticon.com/512/147/147140.png'
   const user = useSelector((state) => state.user.user)
   const [checked, setChecked] = useState(article.favorited)
   const [likeCounter, setLikeCounter] = useState(0)
@@ -79,10 +76,10 @@ const SmallArticle = ({ article }) => {
 
         <img
           className={classes.user__avatar}
-          src={loadingImg ? loadImg : article.author?.image}
+          src={loadingImg ? gifLoadedPATH : article.author?.image}
           alt="user_avatar"
           onLoad={() => setLoadingImg(false)}
-          onError={(e) => (e.currentTarget.src = errorImg)}
+          onError={(e) => (e.currentTarget.src = errorImgPATH)}
         />
       </div>
     </div>
