@@ -51,8 +51,7 @@ const App = () => {
     return (
       <div className={classes.App}>
         <Routes>
-          <Route index element={<AllArticles />} />
-          <Route path={articlesPATH} element={<SignIn />} />
+          <Route path="/" element={<Layout />}></Route>
         </Routes>
         <Spinner />
       </div>

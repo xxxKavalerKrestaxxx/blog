@@ -1,1 +1,1 @@
-https://avia-xxxkavalerkrestaxxx.vercel.app/
+https://avia-xxxkavalerkrestaxxx.vercel.app
